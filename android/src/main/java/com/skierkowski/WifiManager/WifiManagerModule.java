@@ -239,7 +239,7 @@ public class WifiManagerModule extends ReactContextBaseJavaModule {
  }
 
  @ReactMethod
- public  void  sendSonic(String mac, final String wifi)
+ public  void  sendSonic(String mac, final String wifi, Callback result)
  {
      byte[] midbytes = null;
 
@@ -290,8 +290,11 @@ public class WifiManagerModule extends ReactContextBaseJavaModule {
 
      player.setFreqs(a);
 
-     player.play(DataEncoder.encodeMacWiFi(b, wifi.trim()), 5, 1000);
+     int count = 10;
 
+     player.play(DataEncoder.encodeMacWiFi(b, wifi.trim()), count, 1000);
+
+     result.invoke(count);
  }
 
  private static byte uniteBytes(byte src0, byte src1)
